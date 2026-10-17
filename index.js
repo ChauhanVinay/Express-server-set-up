@@ -1,34 +1,40 @@
 const express = require('express');
-const port = 3000;
 const app = express();
+
+const PORT = 4000;
 
 
 //Middleware to parse JSON request bodies
 app.use(express.json());
 
-//1. GET /orders
-app.get("/orders", (req, res) => {
-    res.send("Here is the list of all orders");
+// 1. GET /products
+app.get("/products", (req, res) => {
+    res.send("Here is the list of all products.");
 });
 
-//2. POST /orders
-app.post("/orders", (req, res) => {
-    res.send("A new order has been created");
+// 2. POSt /products
+app.post("/products", (req, res) => {
+    res.send("A new product has been added.");
 });
 
-//3. GET /users
-app.get("/users", (req, res) => {
-    res.send("Here is the list of all users");
+// 3. GET /categories
+app.get("/categories", (req, res) => {
+    res.send("Here is the list of all categories.");
+});
+
+// 4. POST /categories
+app.post("/categories", (req, res) => {
+    res.send("A new category has been created.");
 });
 
 
-//4. POST /users
-app.post("/users", (req, res) => {
-    res.send("A new user has been added");
+// Wildcard 404 handler (must be placed after all valid routes)
+app.use((req, res) => {
+  res.status(404).send('<h1>404 - Page Not Found</h1>');
 });
 
 
-
-app.listen(port, () => {
-    console.log(`Server is up running on PORT ${port}! ready to handle request`);
-})
+// Start listening on port 4000
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
