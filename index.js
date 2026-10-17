@@ -3,40 +3,29 @@ const port = 3000;
 const app = express();
 
 
-//custom middleware
+//Middleware to parse JSON request bodies
+app.use(express.json());
 
-app.use("/welcome", (req, res, next) => {
-    req.user = "Guest";
-    next();
-})
+//1. GET /orders
+app.get("/orders", (req, res) => {
+    res.send("Here is the list of all orders");
+});
 
-app.get("/welcome", (req, res, next) => {
-    res.send(`<h1>Welcome, ${req.user}!</h1>`);
-})
+//2. POST /orders
+app.post("/orders", (req, res) => {
+    res.send("A new order has been created");
+});
 
-//Authentication Middleware
-// app.use((req, res, next) => {
-//     console.log("Authentication middleware called");
-//     next();
-// })
+//3. GET /users
+app.get("/users", (req, res) => {
+    res.send("Here is the list of all users");
+});
 
-// app.use("/library-2",  (req, res, next) => {
-//    console.log("Book recommendation");
-//    next();
-// })
 
-// app.use("/library-3", (req, res, next) => {
-//     console.log("Special access to research paper from professor and senior");
-//     next();
-// })
-
-// app.get("/library-2", (req, res, next)  => {
-//    res.send("<h1>Library 2 Entered</h1>")
-// })
-
-// app.get("/library-3", (req, res, next) => {
-//     res.send("<h1>Library 3 Entered</h1>");
-// })
+//4. POST /users
+app.post("/users", (req, res) => {
+    res.send("A new user has been added");
+});
 
 
 
