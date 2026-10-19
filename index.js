@@ -4,6 +4,7 @@ const PORT = 4000;
 
 const orderRouter = require('./routes/orders');
 const userRouter = require('./routes/users');
+const bookRoutes = require('./routes/books');
 
 //Logging Middleware: Logs request method endpoint, 
 app.use((req, res, next) => {
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
 
 app.use("/orders", orderRouter);
 app.use("/users", userRouter);
-
+app.use(bookRoutes);
 
 
 
